@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="theme-showcase" role="main">
+  <div class="row justify-content-md-center">
+    <div class="col-md-auto" style="background-color:#000;">
+            <div id="ytplayerDiscours" data-id="{{ discoursId }}" data-all="{{ listeDiscours|json_encode }}" ></div>
+    </div>
+  </div>
+  <div class="row justify-content-md-center">
+    <div class="col-md-auto" style="background-color:#000;">
+      <h1 style="color:white;" id="title-video"></h1>
+    </div>
+  </div>
+  <div class="row justify-content-md-center">
+    <div class="col-md-auto" style="background-color:#000; padding-top:80px">
+      <div id="ytplayerMusiques" data-id="{{ musiqueId }}" data-all="{{ listeMusiques|json_encode }}" ></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  var tag = document.createElement('script');
+  tag.src = "https://www.youtube.com/player_api";
+  var firstScriptTag = document.getElementsByTagName('script')[0];
+  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+  var playerMusiques,playerDiscours;
+
+  function onYouTubePlayerAPIReady() {
+    playerMusiques = new YT.Player('ytplayerMusiques', {
+      height: '360',
+      width: '640',
+      videoId: $('#ytplayerMusiques').data('id'),
+      events: {
+            'onReady': onPlayerReadyMusiques,
+            'onStateChange': onPlayerStateChangeMusiques
+          }
+    });
+    playerDiscours = new YT.Player('ytplayerDiscours', {
+      height: '360',
+      width: '640',
+      videoId: $('#ytplayerDiscours').data('id'),
+      events: {
+            'onReady': onPlayerReadyDiscours,
+            'onStateChange': onPlayerStateChangeDiscours
+          }
+    });
+  }
+</script>
+
+{% endblock %}
