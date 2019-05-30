@@ -2,23 +2,24 @@
 
 {% block body %}
 <div class="theme-showcase" role="main">
+  {{ include('default/entetes.html.twig', { 'active' : 'index' }) }}
+</div>
+
   <div class="row justify-content-md-center">
-    <div class="col-md-auto" style="background-color:#000;">
+    <div class="col-md-auto" style="background-color:#000;" id="discoursContainer">
             <div id="ytplayerDiscours" data-id="{{ discoursId }}" data-all="{{ listeDiscours|json_encode }}" ></div>
     </div>
   </div>
   <div class="row justify-content-md-center">
     <div class="col-md-auto" style="background-color:#000;">
-      <h1 style="color:white;" id="title-video"></h1>
+      <h2 style="color:white; margin-top:10px;margin-bottom:10px;" ><strong id="titre"></strong></h2>
     </div>
   </div>
   <div class="row justify-content-md-center">
-    <div class="col-md-auto" style="background-color:#000; padding-top:80px">
+    <div class="col-md-auto" style="background-color:#000;" id="musicContainer">
       <div id="ytplayerMusiques" data-id="{{ musiqueId }}" data-all="{{ listeMusiques|json_encode }}" ></div>
     </div>
   </div>
-</div>
-
 <script>
   var tag = document.createElement('script');
   tag.src = "https://www.youtube.com/player_api";

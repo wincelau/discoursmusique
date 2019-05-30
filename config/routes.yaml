@@ -4,3 +4,13 @@
 index:
     path: /
     defaults: { _controller: 'App\Controller\DefaultController::index' }
+
+lecture:
+    path: /lecture/{musiqueId}/{discoursId}
+    defaults: { _controller: 'App\Controller\DefaultController::lecture' }
+
+apropos:
+    path:  /apropos
+    defaults: { _controller: 'App\Controller\DefaultController::apropos' }
+    requirements:
+        _method:  GET
