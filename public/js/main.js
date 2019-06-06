@@ -43,7 +43,7 @@
           var newList = $("#ytplayerMusiques").attr('data-all');
           $('#musicContainer').remove($('#ytplayerMusiques'));
           $('#musicContainer').html('<div id="ytplayerMusiques" data-id="'+newId+'" data-all="'+newList+'" ></div>')
-
+          currentMusicId = newId;
           playerMusiques = new YT.Player('ytplayerMusiques', {
             height: '360',
             width: '640',
@@ -63,7 +63,7 @@
           var newList = $("#ytplayerDiscours").attr('data-all');
           $('#discoursContainer').remove($('#ytplayerDiscours'));
           $('#discoursContainer').html('<div id="ytplayerDiscours" data-id="'+newId+'" data-all="'+newList+'" ></div>')
-
+          currentDiscoursId = newId;
           playerMusiques = new YT.Player('ytplayerDiscours', {
             height: '360',
             width: '640',
@@ -77,8 +77,10 @@
       }
 
   function refreshTitre(){
-    if(typeof allDiscours[currentDiscoursId] !== 'undefined' && typeof allMusiques[currentMusicId] !== 'undefined')
-    $("#titre").html("<small style='color:white;'>"+allDiscours[currentDiscoursId][3]+ "</small><br/>VS<br/><small style='color:white;'>" +allMusiques[currentMusicId][3]+"</small>");
+    if(typeof allDiscours[currentDiscoursId] !== 'undefined' && typeof allMusiques[currentMusicId] !== 'undefined'){
+      $("#titre").html("<small style='color:white;'>"+allDiscours[currentDiscoursId][3]+ "</small><br/>VS<br/><small style='color:white;'>" +allMusiques[currentMusicId][3]+"</small>");
+      history.pushState(currentState,"","/lecture/"+currentMusicId+"/"+currentDiscoursId);
+    }
   }
 
   var randomProperty = function (obj) {
