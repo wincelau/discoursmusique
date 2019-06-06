@@ -79,6 +79,7 @@
   function refreshTitre(){
     if(typeof allDiscours[currentDiscoursId] !== 'undefined' && typeof allMusiques[currentMusicId] !== 'undefined'){
       $("#titre").html("<small style='color:white;'>"+allDiscours[currentDiscoursId][3]+ "</small><br/>VS<br/><small style='color:white;'>" +allMusiques[currentMusicId][3]+"</small>");
+      var currentState = history.state;
       history.pushState(currentState,"","/lecture/"+currentMusicId+"/"+currentDiscoursId);
     }
   }
